@@ -28,6 +28,14 @@ public class CommentEntity {
     @Column(name = "created_at", nullable = false)
     private Timestamp createdAt;
 
+    public CommentEntity() {
+    }
+
+    public CommentEntity(UserEntity owner, Timestamp createdAt) {
+        this.owner = owner;
+        this.createdAt = createdAt;
+    }
+
     public Long getId() {
         return id;
     }

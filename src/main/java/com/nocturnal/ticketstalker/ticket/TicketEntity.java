@@ -1,7 +1,7 @@
 package com.nocturnal.ticketstalker.ticket;
 
-import com.nocturnal.ticketstalker.priority.PriorityEntity;
 import com.nocturnal.ticketstalker.project.ProjectEntity;
+import com.nocturnal.ticketstalker.priority.PriorityEntity;
 import com.nocturnal.ticketstalker.status.StatusEntity;
 import com.nocturnal.ticketstalker.user.UserEntity;
 import jakarta.persistence.*;
@@ -40,6 +40,19 @@ public class TicketEntity {
 
     @Column(name = "created_at", nullable = false)
     private Timestamp createdAt;
+
+    public TicketEntity() {
+    }
+
+    public TicketEntity(ProjectEntity project, PriorityEntity priority, StatusEntity status, UserEntity user, String title, String description, Timestamp createdAt) {
+        this.project = project;
+        this.priority = priority;
+        this.status = status;
+        this.user = user;
+        this.title = title;
+        this.description = description;
+        this.createdAt = createdAt;
+    }
 
     public Long getId() {
         return id;

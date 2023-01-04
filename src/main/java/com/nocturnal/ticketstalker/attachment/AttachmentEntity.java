@@ -18,6 +18,15 @@ public class AttachmentEntity {
     @Column(name = "path", nullable = false)
     private String path;
 
+    public AttachmentEntity() {
+    }
+
+    public AttachmentEntity(AttachmentId attachmentId, String name, String path) {
+        this.attachmentId = attachmentId;
+        this.name = name;
+        this.path = path;
+    }
+
     public AttachmentId getAttachmentId() {
         return attachmentId;
     }

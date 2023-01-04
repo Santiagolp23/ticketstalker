@@ -13,6 +13,13 @@ public class StatusEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
+    public StatusEntity(String name) {
+        this.name = name;
+    }
+
+    public StatusEntity() {
+    }
+
     public Integer getId() {
         return id;
     }

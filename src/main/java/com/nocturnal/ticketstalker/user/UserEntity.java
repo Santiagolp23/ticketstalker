@@ -24,6 +24,17 @@ public class UserEntity {
     @Column(name = "email", nullable = false, length = 500, unique = true)
     private String email;
 
+    public UserEntity() {
+    }
+
+    public UserEntity(RoleEntity role, String firstName, String lastName, String email) {
+        this.role = role;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+
     public Long getId() {
         return id;
     }

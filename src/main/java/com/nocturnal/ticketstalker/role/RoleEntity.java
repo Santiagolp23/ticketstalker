@@ -13,6 +13,13 @@ public class RoleEntity {
     @Column(name = "role_name", nullable = false)
     private String roleName;
 
+    public RoleEntity(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public RoleEntity() {
+    }
+
     public Integer getId() {
         return id;
     }

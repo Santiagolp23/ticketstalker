@@ -21,6 +21,15 @@ public class ProjectEntity {
     @Column(name = "description", length = 1000)
     private String description;
 
+    public ProjectEntity() {
+    }
+
+    public ProjectEntity(UserEntity managerId, String name, String description) {
+        this.managerId = managerId;
+        this.name = name;
+        this.description = description;
+    }
+
     public Long getId() {
         return id;
     }
