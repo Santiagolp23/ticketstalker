@@ -1,10 +1,9 @@
 package com.nocturnal.ticketstalker.ticket;
 
 
-import com.nocturnal.ticketstalker.priority.PriorityEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class TicketDTO {
+public class TicketProjectDTO {
 
     @Autowired
     private TicketEntity ticketEntity;
@@ -17,7 +16,7 @@ public class TicketDTO {
 
     private String userName;
 
-    public TicketDTO(TicketEntity ticketEntity, String projectName, String priorityName, String statusName, String userName) {
+    public TicketProjectDTO(TicketEntity ticketEntity, String projectName, String priorityName, String statusName, String userName) {
         this.ticketEntity = ticketEntity;
         this.projectName = projectName;
         this.priorityName = priorityName;

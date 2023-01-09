@@ -5,6 +5,8 @@ import com.nocturnal.ticketstalker.priority.PriorityEntity;
 import com.nocturnal.ticketstalker.status.StatusEntity;
 import com.nocturnal.ticketstalker.user.UserEntity;
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
 
@@ -38,7 +40,8 @@ public class TicketEntity {
     @Column(name = "description", nullable = false, length = 1000)
     private String description;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
+    @CreationTimestamp
     private Timestamp createdAt;
 
     public TicketEntity() {

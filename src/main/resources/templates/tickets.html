@@ -146,9 +146,9 @@
                 <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                     <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a>
                     </li>
-                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Tables</li>
+                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Tickets</li>
                 </ol>
-                <h6 class="font-weight-bolder mb-0">Tables</h6>
+                <h6 class="font-weight-bolder mb-0">Tickets</h6>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -283,7 +283,8 @@
                             <table class="table align-items-center mb-0">
                                 <thead>
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#
+                                    <th class="text-center text-uppercase text-primary text-xs font-weight-bolder opacity-7 ps-2">
+                                        #
                                     </th>
                                     <th class="text-center text-uppercase text-primary text-xxs font-weight-bolder opacity-7 ps-2">
                                         Title
@@ -291,7 +292,7 @@
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Priority
                                     </th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                    <th class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                         Project
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -320,19 +321,18 @@
                                     <td th:text="${ticketDto.priorityName}" class="align-middle text-center">
                                         Priority
                                     </td>
-                                    <td th:text="${ticketDto.projectName}">
-                                        <p class="text-xs font-weight-bold mb-0">Project</p>
+                                    <td th:text="${ticketDto.projectName}" class="align-middle text-center">
+                                        Project
                                     </td>
                                     <td th:text="${ticketDto.ticketEntity.description}"
                                         class="align-middle text-center">
                                         <span class="text-secondary text-xs font-weight-bold">Description</span>
                                     </td>
                                     <td th:text="${ticketDto.statusName}"
-                                        class="text-xs text-center align-middle font-weight-bold mb-0">
+                                        class="align-middle text-center">
                                         Status
                                     </td>
-                                    <td th:text="${ticketDto.userName}"
-                                        class="text-xs text-center align-middle font-weight-bold mb-0">
+                                    <td th:text="${ticketDto.userName}" class="align-middle text-center">
                                         Manager
                                     </td>
                                     <td th:text="${ticketDto.ticketEntity.createdAt}" class="align-middle text-center">
@@ -354,6 +354,12 @@
                             ©
                             <script>
                   document.write(new Date().getFullYear())
+
+
+
+
+
+
 
 
 
@@ -496,6 +502,12 @@
       }
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
+
+
+
+
+
+
 
 
 
