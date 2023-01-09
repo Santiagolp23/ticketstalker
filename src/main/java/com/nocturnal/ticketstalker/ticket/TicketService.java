@@ -53,25 +53,16 @@ public class TicketService {
         return userService.listAllUsers();
     }
 
-    public TicketEntity saveTicket(TicketEntity ticket){
+    public TicketEntity saveTicket(TicketEntity ticket) {
         return repo.save(ticket);
     }
 
-    public Optional<PriorityEntity> getPriorityById(Integer id){
-        return priorityService.findById(id);
-    }
-
-    public TicketEntity changeTicketProject(TicketEntity ticket, Long projectId) {
-        ticket.setProject(projectService.findById(projectId).orElseThrow());
-        return ticket;
-    }
-
-    public Optional<StatusEntity> findStatusById(Integer id){
+    public Optional<StatusEntity> findStatusById(Integer id) {
         return statusService.findById(id);
     }
 
     public TicketEntity changeTicketProjectPriorityAndUserWithId(TicketEntity ticket, Long projectId, Integer priotityId,
-                                                                 Long userId){
+                                                                 Long userId) {
         ticket.setProject(projectService.findById(projectId).orElseThrow());
         ticket.setPriority(priorityService.findById(priotityId).orElseThrow());
         ticket.setUser(userService.findById(userId).orElseThrow());
