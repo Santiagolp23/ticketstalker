@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TicketService {
@@ -37,6 +36,24 @@ public class TicketService {
         return repo.findAll();
     }
 
+    public TicketEntity findTicketById(Long id) {
+        return repo.findById(id).get();
+    }
+
+
+    public TicketEntity saveTicket(TicketEntity ticket) {
+        return repo.save(ticket);
+    }
+
+    public TicketEntity updateTicket(TicketEntity ticket) {
+        return repo.save(ticket);
+    }
+
+    public void deleteTicket(Long id) {
+        repo.deleteById(id);
+    }
+
+
     public List<TicketProjectDTO> getAllTicketsDto() {
         return repo.getTicketDtos();
     }
@@ -53,13 +70,14 @@ public class TicketService {
         return userService.listAllUsers();
     }
 
-    public TicketEntity saveTicket(TicketEntity ticket) {
-        return repo.save(ticket);
+    public StatusEntity findStatusById(Integer id) {
+        return statusService.findById(id).get();
     }
 
-    public Optional<StatusEntity> findStatusById(Integer id) {
-        return statusService.findById(id);
+    public UserEntity findUserById(Long id) {
+        return userService.findById(id).get();
     }
+
 
     public TicketEntity changeTicketProjectPriorityAndUserWithId(TicketEntity ticket, Long projectId, Integer priotityId,
                                                                  Long userId) {

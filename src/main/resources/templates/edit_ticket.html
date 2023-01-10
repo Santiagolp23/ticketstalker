@@ -21,7 +21,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="/bootstrap/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="/bootstrap/assets/img/favicon.png">
     <title>
-        Ticket Creation
+        Ticket Update
     </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css"
@@ -89,7 +89,7 @@
                     </li>
                     <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Tickets</li>
                 </ol>
-                <h6 class="font-weight-bolder mb-0">New Ticket</h6>
+                <h6 class="font-weight-bolder mb-0">Edit Ticket</h6>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -106,7 +106,7 @@
     <div class="container-fluid py-4">
         <div class="row min-vh-80 h-100">
             <div class="col-12">
-                <form th:action="@{/tickets}" th:object="${ticket}" th:method="POST">
+                <form th:object="${ticket}" th:action="@{/tickets/{id}(id=${ticket.id})}" th:method="POST">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="input-group input-group-outline my-3">
@@ -151,7 +151,7 @@
                             </select>
                         </div>
                         <div class="p-3 d-flex justify-content-center">
-                            <button class="btn btn-primary" type="submit">Create Ticket</button>
+                            <button class="btn btn-primary" type="submit">Update Ticket</button>
                         </div>
                     </div>
                 </form>

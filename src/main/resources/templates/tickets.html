@@ -275,10 +275,14 @@
                 <div class="card my-4">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                            <h6 class="text-white text-capitalize ps-3">Tickets table</h6>
+                            <h6 class="text-white text-capitalize ps-3">Tickets table
+                                <a th:href="@{/tickets/new}" class="btn btn-success float-end position-absolute top-50 end-0 translate-middle">New</a>
+                            </h6>
+
                         </div>
                     </div>
                     <div class="card-body px-0 pb-2">
+
                         <div class="table-responsive p-0">
                             <table class="table align-items-center mb-0">
                                 <thead>
@@ -306,6 +310,9 @@
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Created At
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Actions
                                     </th>
                                 </tr>
                                 </thead>
@@ -338,6 +345,12 @@
                                     <td th:text="${ticketDto.ticketEntity.createdAt}" class="align-middle text-center">
                                         Created At
                                     </td>
+                                    <td class="align-middle text-center">
+                                        <a th:href="@{/tickets/update/{id}(id=${ticketDto.ticketEntity.getId()})}"
+                                           class="btn btn-info">Edit</a>
+                                        <a th:href="@{/tickets/{id}(id=${ticketDto.ticketEntity.getId()})}"
+                                           class="btn btn-danger">Delete</a>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -354,6 +367,7 @@
                             ©
                             <script>
                   document.write(new Date().getFullYear())
+
 
 
 
@@ -502,6 +516,7 @@
       }
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
+
 
 
 
