@@ -276,7 +276,8 @@
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                             <h6 class="text-white text-capitalize ps-3">Tickets table
-                                <a th:href="@{/tickets/new}" class="btn btn-success float-end position-absolute top-50 end-0 translate-middle">New</a>
+                                <a th:href="@{/tickets/new}"
+                                   class="btn btn-success float-end position-absolute top-50 end-0 translate-middle">New</a>
                             </h6>
 
                         </div>
@@ -348,8 +349,31 @@
                                     <td class="align-middle text-center">
                                         <a th:href="@{/tickets/update/{id}(id=${ticketDto.ticketEntity.getId()})}"
                                            class="btn btn-info">Edit</a>
-                                        <a th:href="@{/tickets/{id}(id=${ticketDto.ticketEntity.getId()})}"
-                                           class="btn btn-danger">Delete</a>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#deleteModal">Delete</button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Delete Confirmation</h5>
+                                                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Do you really want to delete this ticket?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <a th:href="@{/tickets/{id}(id=${ticketDto.ticketEntity.getId()})}"
+                                                           class="btn btn-danger">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -367,6 +391,8 @@
                             ©
                             <script>
                   document.write(new Date().getFullYear())
+
+
 
 
 
@@ -516,6 +542,8 @@
       }
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
+
+
 
 
 
