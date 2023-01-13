@@ -147,7 +147,7 @@
                                 <option value="">Please select</option>
                                 <option th:each="u : ${users}"
                                         th:value="${u.getId()}"
-                                        th:text="${u.firstName} + ' ' + ${u.lastName}"></option>
+                                        th:text="${u.getFullName()}"></option>
                             </select>
                         </div>
                         <div class="p-3 d-flex justify-content-center">

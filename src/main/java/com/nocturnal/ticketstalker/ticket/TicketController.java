@@ -69,4 +69,11 @@ public class TicketController {
         return "redirect:/tickets";
     }
 
+    @GetMapping("/tickets/details/{id}")
+    public String showTicketDetails(@PathVariable Long id, Model model){
+        model.addAttribute("comments", service.findAllCommentsByTicket(service.findTicketById(id)));
+
+        return "ticket_details";
+    }
+
 }

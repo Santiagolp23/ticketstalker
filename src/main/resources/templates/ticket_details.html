@@ -21,7 +21,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="/bootstrap/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="/bootstrap/assets/img/favicon.png">
     <title>
-        Ticket Creation
+        Material Dashboard 2 by Creative Tim
     </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css"
@@ -87,9 +87,9 @@
                 <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                     <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a>
                     </li>
-                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Tickets</li>
+                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Template</li>
                 </ol>
-                <h6 class="font-weight-bolder mb-0">New Ticket</h6>
+                <h6 class="font-weight-bolder mb-0">Template</h6>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -104,101 +104,77 @@
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
-        <div class="row min-vh-80 h-100">
+        <div class="row">
             <div class="col-12">
-                <form th:action="@{/tickets}" th:object="${ticket}" th:method="POST">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Title: </label>
-                                <input type="text" name="title" th:field="*{title}" class="form-control" required>
+                <div class="card my-4">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                            <h6 class="text-white text-capitalize ps-3">Comments
+                            </h6>
+                        </div>
+                        <div class="py-3" th:each="comment : ${comments}">
+                            <div class="card">
+                                <div>
+                                    <h5 class="card-header position-relative" th:text="${comment.owner.getFullName()}">
+                                        Owner
+                                    </h5>
+                                    <h7 th:text="${comment.getCreatedAt()}" class="float-end position-absolute top-50 end-0 translate-middle">
+                                        Created At
+                                    </h7>
+                                </div>
+                                <div class="card-body">
+                                    <p th:text="${comment.getContent()}" class="card-text">Description</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-group input-group-outline my-3">
-                                <textarea th:field="*{description}" class="form-control" rows="5"
-                                          placeholder="Say a few words about the ticket" spellcheck="false"
-                                          required></textarea>
-                            </div>
-                        </div>
-                        <div class="input-group input-group-static col">
-                            <label for="projectsFormControlSelect" class="ms-0">Project: </label>
-                            <select th:field="*{project}" class="form-control" id="projectsFormControlSelect" required>
-                                <option value="">Please select</option>
-                                <option th:each="p : ${projects}"
-                                        th:value="${p.getId()}"
-                                        th:text="${p.name}">
-                                    <!-- Learn how to access the variable from each loop in form and then find the project by thid ID-->
-                                </option>
-                            </select>
-                        </div>
-                        <div class="input-group input-group-static col">
-                            <label for="priorityFormControlSelect" class="ms-0">Priority: </label>
-                            <select th:field="*{priority}" class="form-control" id="priorityFormControlSelect" required>
-                                <option value="">Please select</option>
-                                <option th:each="prio : ${priorities}"
-                                        th:value="${prio.getId()}"
-                                        th:text="${prio.name}"></option>
-                            </select>
-                        </div>
-                        <div class="input-group input-group-static col">
-                            <label for="userFormControlSelect" class="ms-0 col">User: </label>
-                            <select th:field="*{user}" class="form-control" id="userFormControlSelect" required>
-                                <option value="">Please select</option>
-                                <option th:each="u : ${users}"
-                                        th:value="${u.getId()}"
-                                        th:text="${u.getFullName()}"></option>
-                            </select>
-                        </div>
-                        <div class="p-3 d-flex justify-content-center">
-                            <button class="btn btn-primary" type="submit">Create Ticket</button>
                         </div>
                     </div>
-                </form>
-            </div>
-        </div>
-        <footer class="footer pt-5">
-            <div class="container-fluid">
-                <div class="row align-items-center justify-content-lg-between">
-                    <div class="col-lg-6 mb-lg-0 mb-4">
-                        <div class="copyright text-center text-sm text-muted text-lg-start">
-                            ©
-                            <script>
+                    <div class="card-body px-0 pb-2">
+                    </div>
+                    <footer class="footer pt-5">
+                        <div class="container-fluid">
+                            <div class="row align-items-center justify-content-lg-between">
+                                <div class="col-lg-6 mb-lg-0 mb-4">
+                                    <div class="copyright text-center text-sm text-muted text-lg-start">
+                                        ©
+                                        <script>
                 document.write(new Date().getFullYear())
 
 
-
-                            </script>
-                            ,
-                            made with <i class="fa fa-heart"></i> by
-                            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative
-                                Tim</a>
-                            for a better web.
+                                        </script>
+                                        ,
+                                        made with <i class="fa fa-heart"></i> by
+                                        <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative
+                                            Tim</a>
+                                        for a better web.
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                                        <li class="nav-item">
+                                            <a href="https://www.creative-tim.com" class="nav-link text-muted"
+                                               target="_blank">Creative
+                                                Tim</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="https://www.creative-tim.com/presentation"
+                                               class="nav-link text-muted"
+                                               target="_blank">About Us</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="https://www.creative-tim.com/blog" class="nav-link text-muted"
+                                               target="_blank">Blog</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="https://www.creative-tim.com/license"
+                                               class="nav-link pe-0 text-muted"
+                                               target="_blank">License</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative
-                                    Tim</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted"
-                                   target="_blank">About Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
-                                   target="_blank">License</a>
-                            </li>
-                        </ul>
-                    </div>
+                    </footer>
                 </div>
-            </div>
-        </footer>
-    </div>
 </main>
 <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
@@ -302,7 +278,6 @@
       }
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
-
 
 
 </script>

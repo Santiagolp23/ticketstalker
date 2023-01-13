@@ -1,5 +1,7 @@
 package com.nocturnal.ticketstalker.ticket;
 
+import com.nocturnal.ticketstalker.comment.CommentEntity;
+import com.nocturnal.ticketstalker.comment.CommentService;
 import com.nocturnal.ticketstalker.priority.PriorityEntity;
 import com.nocturnal.ticketstalker.priority.PriorityService;
 import com.nocturnal.ticketstalker.project.ProjectEntity;
@@ -30,6 +32,9 @@ public class TicketService {
 
     @Autowired
     private StatusService statusService;
+
+    @Autowired
+    private CommentService commentService;
 
 
     public List<TicketEntity> listAllTickets() {
@@ -85,6 +90,10 @@ public class TicketService {
         ticket.setPriority(priorityService.findById(priotityId).orElseThrow());
         ticket.setUser(userService.findById(userId).orElseThrow());
         return ticket;
+    }
+
+    public List<CommentEntity> findAllCommentsByTicket(TicketEntity ticket){
+        return commentService.findAllCommentsByTicket(ticket);
     }
 
 }
