@@ -4,7 +4,8 @@ import com.nocturnal.ticketstalker.ticket.TicketEntity;
 import com.nocturnal.ticketstalker.user.UserEntity;
 import jakarta.persistence.*;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "comments")
@@ -26,12 +27,12 @@ public class CommentEntity {
     private String content;
 
     @Column(name = "created_at", nullable = false)
-    private Timestamp createdAt;
+    private LocalDateTime createdAt;
 
     public CommentEntity() {
     }
 
-    public CommentEntity(UserEntity owner, Timestamp createdAt) {
+    public CommentEntity(UserEntity owner, LocalDateTime createdAt) {
         this.owner = owner;
         this.createdAt = createdAt;
     }
@@ -52,11 +53,15 @@ public class CommentEntity {
         this.content = content;
     }
 
-    public Timestamp getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
+    public String getCreatedAtFormatted() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        return createdAt.format(formatter);
+    }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

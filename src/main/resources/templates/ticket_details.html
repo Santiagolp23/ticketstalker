@@ -118,7 +118,7 @@
                                     <h5 class="card-header position-relative" th:text="${comment.owner.getFullName()}">
                                         Owner
                                     </h5>
-                                    <h7 th:text="${comment.getCreatedAt()}" class="float-end position-absolute top-50 end-0 translate-middle">
+                                    <h7 th:text="${comment.getCreatedAtFormatted()}" class="float-end position-absolute top-50 end-0 translate-middle">
                                         Created At
                                     </h7>
                                 </div>
