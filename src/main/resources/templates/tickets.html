@@ -343,7 +343,7 @@
                                     <td th:text="${ticketDto.userName}" class="align-middle text-center">
                                         Manager
                                     </td>
-                                    <td th:text="${ticketDto.ticketEntity.createdAt}" class="align-middle text-center">
+                                    <td th:text="${ticketDto.ticketEntity.getCreatedAtFormatted()}" class="align-middle text-center">
                                         Created At
                                     </td>
                                     <td class="align-middle text-center">

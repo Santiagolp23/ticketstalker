@@ -71,7 +71,11 @@ public class TicketController {
 
     @GetMapping("/tickets/details/{id}")
     public String showTicketDetails(@PathVariable Long id, Model model){
+        model.addAttribute("ticket", service.findTicketById(id));
         model.addAttribute("comments", service.findAllCommentsByTicket(service.findTicketById(id)));
+        model.addAttribute("projects", service.listAllProjects());
+        model.addAttribute("priorities", service.listAllPriorities());
+        model.addAttribute("users", service.listAllusers());
 
         return "ticket_details";
     }

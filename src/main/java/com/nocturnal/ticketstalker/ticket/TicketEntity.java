@@ -5,10 +5,10 @@ import com.nocturnal.ticketstalker.priority.PriorityEntity;
 import com.nocturnal.ticketstalker.status.StatusEntity;
 import com.nocturnal.ticketstalker.user.UserEntity;
 import jakarta.persistence.*;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "tickets")
@@ -42,12 +42,12 @@ public class TicketEntity {
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
-    private Timestamp createdAt;
+    private LocalDateTime createdAt;
 
     public TicketEntity() {
     }
 
-    public TicketEntity(ProjectEntity project, PriorityEntity priority, StatusEntity status, UserEntity user, String title, String description, Timestamp createdAt) {
+    public TicketEntity(ProjectEntity project, PriorityEntity priority, StatusEntity status, UserEntity user, String title, String description, LocalDateTime createdAt) {
         this.project = project;
         this.priority = priority;
         this.status = status;
@@ -113,11 +113,16 @@ public class TicketEntity {
         this.description = description;
     }
 
-    public Timestamp getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public String getCreatedAtFormatted() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        return createdAt.format(formatter);
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
