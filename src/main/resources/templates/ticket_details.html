@@ -191,9 +191,9 @@
                         <li th:text="'Status: ' + ${ticket.getStatus().getName()}" class="list-group-item">Status</li>
                         <li class="list-group-item">
                             <label for="priorityFormControlSelect" class="ms-0">Priority: </label>
-                            <select th:field="*{priority}" class="d-inline dropdown-menu bg-gradient-info" id="priorityFormControlSelect" required>
-                                <option value="">Please select</option>
-                                <option th:each="prio : ${priorities}"
+                            <select th:field="*{priority}" class="d-inline dropdown-menu bg-gradient-info text-white text-center p-1 ms-2" id="priorityFormControlSelect" required>
+                                <option class="text-body" value="">Please select</option>
+                                <option class="text-body" th:each="prio : ${priorities}"
                                         th:value="${prio.getId()}"
                                         th:text="${prio.name}"></option>
                             </select>
