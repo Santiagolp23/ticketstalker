@@ -13,7 +13,7 @@ public class TicketController {
 
     @GetMapping({"/tickets", "/"})
     public String listTickets(Model model) {
-        model.addAttribute("ticketDtos", service.getAllTicketsDto());
+        model.addAttribute("ticketDtos", service.getAllTicketsDtoAndSortByIdAsc());
         return "tickets";
     }
 
@@ -37,8 +37,8 @@ public class TicketController {
     }
 
     @GetMapping("/tickets/update/{id}")
-    public String showEditTicketForm(@PathVariable Long id, Model model){
-        model.addAttribute("ticket",service.findTicketById(id));
+    public String showEditTicketForm(@PathVariable Long id, Model model) {
+        model.addAttribute("ticket", service.findTicketById(id));
         model.addAttribute("projects", service.listAllProjects());
         model.addAttribute("priorities", service.listAllPriorities());
         model.addAttribute("users", service.listAllusers());
@@ -47,37 +47,52 @@ public class TicketController {
     }
 
     @PostMapping("/tickets/{id}")
-    public String updateTicket(@PathVariable Long id, @ModelAttribute("ticket") TicketEntity ticket){
+    public String updateTicket(@PathVariable Long id, @ModelAttribute("ticket") TicketEntity ticket) {
         TicketEntity existentTicket = service.findTicketById(id);
 
-        existentTicket.setId(id);
         existentTicket.setTitle(ticket.getTitle());
-        existentTicket.setDescription(ticket.getDescription());
         existentTicket.setProject(ticket.getProject());
+        existentTicket.setDescription(ticket.getDescription());
         existentTicket.setPriority(ticket.getPriority());
         existentTicket.setUser(ticket.getUser());
 
         service.updateTicket(existentTicket);
 
+
         return "redirect:/tickets";
 
     }
 
+
     @GetMapping("/tickets/{id}")
-    public String deleteTicket(@PathVariable Long id){
+    public String deleteTicket(@PathVariable Long id) {
         service.deleteTicket(id);
         return "redirect:/tickets";
     }
 
     @GetMapping("/tickets/details/{id}")
-    public String showTicketDetails(@PathVariable Long id, Model model){
+    public String showTicketDetails(@PathVariable Long id, Model model) {
         model.addAttribute("ticket", service.findTicketById(id));
         model.addAttribute("comments", service.findAllCommentsByTicket(service.findTicketById(id)));
         model.addAttribute("projects", service.listAllProjects());
+        model.addAttribute("statuses", service.listAllStatuses());
         model.addAttribute("priorities", service.listAllPriorities());
         model.addAttribute("users", service.listAllusers());
 
         return "ticket_details";
+    }
+
+    @PostMapping("/tickets/details/{id}")
+    public String updateTicketFromDetailsForm(@PathVariable Long id, @ModelAttribute("ticket") TicketEntity ticket) {
+        TicketEntity existentTicket = service.findTicketById(id);
+
+        existentTicket.setPriority(ticket.getPriority());
+        existentTicket.setStatus(ticket.getStatus());
+
+        service.updateTicket(existentTicket);
+
+        return "redirect:/tickets/details/{id}";
+
     }
 
 }

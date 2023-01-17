@@ -11,6 +11,7 @@ import com.nocturnal.ticketstalker.status.StatusService;
 import com.nocturnal.ticketstalker.user.UserEntity;
 import com.nocturnal.ticketstalker.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,7 +37,6 @@ public class TicketService {
     @Autowired
     private CommentService commentService;
 
-
     public List<TicketEntity> listAllTickets() {
         return repo.findAll();
     }
@@ -50,8 +50,8 @@ public class TicketService {
         return repo.save(ticket);
     }
 
-    public TicketEntity updateTicket(TicketEntity ticket) {
-        return repo.save(ticket);
+    public void updateTicket(TicketEntity ticket) {
+        repo.save(ticket);
     }
 
     public void deleteTicket(Long id) {
@@ -59,8 +59,8 @@ public class TicketService {
     }
 
 
-    public List<TicketProjectDTO> getAllTicketsDto() {
-        return repo.getTicketDtos();
+    public List<TicketProjectDTO> getAllTicketsDtoAndSortByIdAsc() {
+        return repo.getTicketDtosAndSort(Sort.by("id"));
     }
 
     public List<ProjectEntity> listAllProjects() {
@@ -77,6 +77,10 @@ public class TicketService {
 
     public StatusEntity findStatusById(Integer id) {
         return statusService.findById(id).get();
+    }
+
+    public List<StatusEntity> listAllStatuses() {
+        return statusService.listAllStatuses();
     }
 
     public UserEntity findUserById(Long id) {

@@ -1,5 +1,6 @@
 package com.nocturnal.ticketstalker.ticket;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,7 @@ public interface TicketRepository extends JpaRepository<TicketEntity, Long> {
             "INNER JOIN t.project p " +
             "INNER JOIN t.priority prio " +
             "INNER JOIN t.status s " +
-            "INNER JOIN t.user u")
-    public List<TicketProjectDTO> getTicketDtos();
+            "INNER JOIN t.user u"
+            )
+    public List<TicketProjectDTO> getTicketDtosAndSort(Sort sort);
 }

@@ -162,7 +162,8 @@
 
 
 
-                                      </script>
+
+                                        </script>
                                         , made with <i class="fa fa-heart"></i> by
                                         <a
                                                 href="https://www.creative-tim.com"
@@ -179,28 +180,41 @@
                 </div>
             </div>
             <div class="col-4">
-                <div class="card float-end" style="width: 18rem;">
+                <div class="card float-end" style="width: 18rem;" id="formControlSelect">
                     <div class="card-header">
-                        Ticket details
+                        <h6>
+                            Ticket details
+                        </h6>
                     </div>
-                    <form class="list-group list-group-flush" th:object="${ticket}"
-                          th:action="@{/tickets/{id}(id=${ticket.id})}" th:method="POST">
+                    <form class="list-group list-group-flush" th:object="${ticket}" id="ticketDetailsForm"
+                          th:action="@{/tickets/details/{id}(id=${ticket.id})}" th:method="POST">
                         <li th:text="'Ticket ID: ' + ${ticket.getId()}" class="list-group-item">Ticket ID</li>
-                        <li th:text="'Created At: ' + ${ticket.getCreatedAtFormatted()}" class="list-group-item">Created At
+                        <li th:text="'Created At: ' + ${ticket.getCreatedAtFormatted()}" class="list-group-item">Created
+                            At
                         </li>
-                        <li th:text="'Status: ' + ${ticket.getStatus().getName()}" class="list-group-item">Status</li>
                         <li class="list-group-item">
-                            <label for="priorityFormControlSelect" class="ms-0">Priority: </label>
-                            <select th:field="*{priority}" class="d-inline dropdown-menu bg-gradient-info text-white text-center p-1 ms-2" id="priorityFormControlSelect" required>
+                            <label class="ms-0">Status: </label>
+                            <select onchange="this.form.submit()" th:field="*{status}"
+                                    class="d-inline dropdown-menu bg-gradient-info text-white text-center p-1 ms-2"
+                                    required>
+                                <option class="text-body" value="">Please select</option>
+                                <option class="text-body" th:each="status : ${statuses}"
+                                        th:value="${status.getId()}"
+                                        th:text="${status.getName()}"></option>
+                            </select>
+                        </li>
+                        <li class="list-group-item">
+                            <label class="ms-0">Priority: </label>
+                            <select onchange="this.form.submit()" th:field="*{priority}"
+                                    class="d-inline dropdown-menu bg-gradient-info text-white text-center p-1 ms-2"
+                                    id="priorityFormControlSelect" required>
                                 <option class="text-body" value="">Please select</option>
                                 <option class="text-body" th:each="prio : ${priorities}"
                                         th:value="${prio.getId()}"
                                         th:text="${prio.name}"></option>
                             </select>
-                            <!-- make text in the middle and white, strong -->
                         </li>
                     </form>
-
                 </div>
             </div>
         </div>
@@ -298,6 +312,13 @@
         </div>
     </div>
 </div>
+
+<script>
+$("#ticketDetailsForm").on("submit", function(){
+    $("#formControlSelect").load("#formControlSelect")
+})
+
+</script>
 <!--   Core JS Files   -->
 <script src="/bootstrap/assets/js/core/popper.min.js"></script>
 <script src="/bootstrap/assets/js/core/bootstrap.min.js"></script>
@@ -311,6 +332,7 @@
       }
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
+
 
 
 
