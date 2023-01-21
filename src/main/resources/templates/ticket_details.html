@@ -163,6 +163,11 @@
 
 
 
+
+
+
+
+
                                         </script>
                                         , made with <i class="fa fa-heart"></i> by
                                         <a
@@ -186,30 +191,30 @@
                             Ticket details
                         </h6>
                     </div>
-                    <form class="list-group list-group-flush" th:object="${ticket}" id="ticketDetailsForm"
-                          th:action="@{/tickets/details/{id}(id=${ticket.id})}" th:method="POST">
+                    <form class="list-group list-group-flush" id="ticketDetailsForm" th:object="${ticket}">
                         <li th:text="'Ticket ID: ' + ${ticket.getId()}" class="list-group-item">Ticket ID</li>
                         <li th:text="'Created At: ' + ${ticket.getCreatedAtFormatted()}" class="list-group-item">Created
                             At
                         </li>
                         <li class="list-group-item">
                             <label class="ms-0">Status: </label>
-                            <select onchange="this.form.submit()" th:field="*{status}"
+                            <select th:field="*{status}"
                                     class="d-inline dropdown-menu bg-gradient-info text-white text-center p-1 ms-2"
+                                    id="statusSelect"
                                     required>
-                                <option class="text-body" value="">Please select</option>
-                                <option class="text-body" th:each="status : ${statuses}"
+                                <option class="text-body" value="" disabled>Please select</option>
+                                <option class="text-body" th:each="status : ${statuses}" id="statusOption"
                                         th:value="${status.getId()}"
                                         th:text="${status.getName()}"></option>
                             </select>
                         </li>
                         <li class="list-group-item">
                             <label class="ms-0">Priority: </label>
-                            <select onchange="this.form.submit()" th:field="*{priority}"
+                            <select th:field="*{priority}"
                                     class="d-inline dropdown-menu bg-gradient-info text-white text-center p-1 ms-2"
-                                    id="priorityFormControlSelect" required>
-                                <option class="text-body" value="">Please select</option>
-                                <option class="text-body" th:each="prio : ${priorities}"
+                                    id="prioritySelect" required>
+                                <option class="text-body" value="" disabled>Please select</option>
+                                <option class="text-body" th:each="prio : ${priorities}" id="priorityOption"
                                         th:value="${prio.getId()}"
                                         th:text="${prio.name}"></option>
                             </select>
@@ -314,10 +319,16 @@
 </div>
 
 <script>
-$("#ticketDetailsForm").on("submit", function(){
-    $("#formControlSelect").load("#formControlSelect")
-})
-
+$("#ticketDetailsForm").on("change", function () {
+    $.ajax({
+        method: "POST",
+        url: $(location).attr('pathname'),
+        data: {
+            "statusId": $("#statusSelect").val(),
+            "priorityId": $("#prioritySelect").val()
+        }
+    })
+});
 </script>
 <!--   Core JS Files   -->
 <script src="/bootstrap/assets/js/core/popper.min.js"></script>
@@ -332,8 +343,6 @@ $("#ticketDetailsForm").on("submit", function(){
       }
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
-
-
 
 
 

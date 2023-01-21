@@ -1,5 +1,7 @@
 package com.nocturnal.ticketstalker.ticket;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class TicketController {
+
+    private final Log LOGGER = LogFactory.getLog(TicketController.class);
 
     @Autowired
     private TicketService service;
@@ -83,15 +87,19 @@ public class TicketController {
     }
 
     @PostMapping("/tickets/details/{id}")
-    public String updateTicketFromDetailsForm(@PathVariable Long id, @ModelAttribute("ticket") TicketEntity ticket) {
+    @ResponseBody
+    public String updateTicketFromDetailsForm(@PathVariable Long id, @RequestParam Integer statusId, @RequestParam Integer priorityId) {
         TicketEntity existentTicket = service.findTicketById(id);
 
-        existentTicket.setPriority(ticket.getPriority());
-        existentTicket.setStatus(ticket.getStatus());
+        existentTicket.setStatus(service.findStatusById(statusId));
+        existentTicket.setPriority(service.findPriorityById(priorityId));
+
+        LOGGER.warn(existentTicket.getStatus().getName());
+        LOGGER.warn(existentTicket.getPriority().getName());
 
         service.updateTicket(existentTicket);
 
-        return "redirect:/tickets/details/{id}";
+        return "Success";
 
     }
 

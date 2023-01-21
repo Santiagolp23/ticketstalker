@@ -87,6 +87,10 @@ public class TicketService {
         return userService.findById(id).get();
     }
 
+    public PriorityEntity findPriorityById(Integer id){
+        return priorityService.findById(id).get();
+    }
+
 
     public TicketEntity changeTicketProjectPriorityAndUserWithId(TicketEntity ticket, Long projectId, Integer priotityId,
                                                                  Long userId) {
