@@ -1,6 +1,5 @@
 package com.nocturnal.ticketstalker.user;
 
-import com.nocturnal.ticketstalker.priority.PriorityEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,5 +18,9 @@ public class UserService {
 
     public Optional<UserEntity> findById(Long Id){
         return repo.findById(Id);
+    }
+
+    public UserEntity getUserByEmail(String email){
+        return repo.findByEmail(email);
     }
 }

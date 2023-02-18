@@ -94,9 +94,6 @@ public class TicketController {
         existentTicket.setStatus(service.findStatusById(statusId));
         existentTicket.setPriority(service.findPriorityById(priorityId));
 
-        LOGGER.warn(existentTicket.getStatus().getName());
-        LOGGER.warn(existentTicket.getPriority().getName());
-
         service.updateTicket(existentTicket);
 
         return "Success";
