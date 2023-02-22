@@ -1,6 +1,5 @@
 package com.nocturnal.ticketstalker.config;
 
-import com.nocturnal.ticketstalker.user.UserEntity;
 import com.nocturnal.ticketstalker.user.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
