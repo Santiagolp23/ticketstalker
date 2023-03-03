@@ -2,7 +2,7 @@ package com.nocturnal.ticketstalker.comment;
 
 import com.nocturnal.ticketstalker.ticket.TicketEntity;
 import com.nocturnal.ticketstalker.user.UserEntity;
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

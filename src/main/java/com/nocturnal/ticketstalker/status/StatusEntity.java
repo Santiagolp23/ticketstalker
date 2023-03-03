@@ -1,6 +1,6 @@
 package com.nocturnal.ticketstalker.status;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "statuses")

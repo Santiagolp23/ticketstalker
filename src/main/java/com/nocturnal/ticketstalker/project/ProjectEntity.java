@@ -1,7 +1,7 @@
 package com.nocturnal.ticketstalker.project;
 
 import com.nocturnal.ticketstalker.user.UserEntity;
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "projects")

@@ -1,6 +1,6 @@
 package com.nocturnal.ticketstalker.priority;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "priorities")

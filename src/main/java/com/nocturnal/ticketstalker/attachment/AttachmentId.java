@@ -2,9 +2,9 @@ package com.nocturnal.ticketstalker.attachment;
 
 import com.nocturnal.ticketstalker.comment.CommentEntity;
 import com.nocturnal.ticketstalker.ticket.TicketEntity;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import java.io.Serializable;
 

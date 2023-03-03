@@ -1,6 +1,6 @@
 package com.nocturnal.ticketstalker.role;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "roles")

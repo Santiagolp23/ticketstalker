@@ -4,7 +4,7 @@ import com.nocturnal.ticketstalker.project.ProjectEntity;
 import com.nocturnal.ticketstalker.priority.PriorityEntity;
 import com.nocturnal.ticketstalker.status.StatusEntity;
 import com.nocturnal.ticketstalker.user.UserEntity;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
