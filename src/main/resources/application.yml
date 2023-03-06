@@ -1,11 +1,32 @@
 spring:
+  config:
+    import: classpath:secret.yml
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ticketstalker
+    username: postgres
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    platform: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  logging:
+    level:
+      org.hibernate: error
+      root: info
+      org.springframework.web: info
   security:
     oauth2:
       client:
         registration:
           auth0:
             client-id: Raqn8DZBV2ygmsPGpBsuloBy3872syiZ
-            client-secret: gHzb0UYnZ0Zy0UPRDuiIUcwYm0ddlOditTRaMCGHGF6NHD00S3BBUDqzWJlbE5q2
+            client-secret: ${AUTH0_CLIENT_SECRET}
             scope:
               - openid
               - profile
