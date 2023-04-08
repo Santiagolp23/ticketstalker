@@ -18,8 +18,8 @@ spring:
   logging:
     level:
       org.hibernate: error
-      root: info
-      org.springframework.web: info
+      root: error
+      org.springframework.web: error
   security:
     oauth2:
       client:

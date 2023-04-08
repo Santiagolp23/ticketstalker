@@ -19,13 +19,14 @@ import java.util.Map;
  * {@linkplain OidcUser} for use by the view.
  */
 @Controller
-public class UserrController {
+public class UserController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping("/profile")
     public String profile(Model model, @AuthenticationPrincipal OidcUser oidcUser) {
         model.addAttribute("profile", oidcUser.getClaims());
+        log.error(oidcUser.getIdToken().getTokenValue());
         model.addAttribute("profileJson", claimsToJson(oidcUser.getClaims()));
         return "profile";
     }
@@ -42,7 +43,6 @@ public class UserrController {
     @Bean
     public ObjectMapper objectMapper() {
         JavaTimeModule module = new JavaTimeModule();
-        return new ObjectMapper()
-                .registerModule(module);
+        return new ObjectMapper()                .registerModule(module);
     }
 }

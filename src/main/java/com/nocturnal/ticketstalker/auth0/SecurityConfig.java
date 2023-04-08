@@ -1,15 +1,18 @@
 package com.nocturnal.ticketstalker.auth0;
 
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.*;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+
+@Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     private final LogoutHandler logoutHandler;
+
 
     public SecurityConfig(LogoutHandler logoutHandler) {
         this.logoutHandler = logoutHandler;
@@ -21,6 +24,7 @@ public class SecurityConfig {
                 // allow all users to access the home pages and the static images directory
                 .mvcMatchers("/static/bootstrap/assets/img/**").permitAll()
                 // all other requests must be authenticated
+                .mvcMatchers("/tickets").hasAuthority("SCOPE_MANAGER")
                 .anyRequest().authenticated()
                 .and().oauth2Login()
                 .and().logout()
@@ -32,3 +36,4 @@ public class SecurityConfig {
     }
 
 }
+
