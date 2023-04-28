@@ -1,5 +1,6 @@
 package com.nocturnal.ticketstalker.ticket;
 
+import com.nocturnal.ticketstalker.comment.CommentEntity;
 import com.nocturnal.ticketstalker.project.ProjectEntity;
 import com.nocturnal.ticketstalker.priority.PriorityEntity;
 import com.nocturnal.ticketstalker.status.StatusEntity;
@@ -9,6 +10,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tickets")
@@ -43,6 +46,13 @@ public class TicketEntity {
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @OneToMany(
+            mappedBy = "ticketId",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<CommentEntity> comments = new ArrayList<>();
 
     public TicketEntity() {
     }

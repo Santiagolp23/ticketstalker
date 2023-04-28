@@ -19,8 +19,8 @@ public class CommentEntity {
     @JoinColumn(name = "owner_id", nullable = false)
     private UserEntity owner;
 
-    @ManyToOne
-    @JoinColumn(name = "ticket_id", nullable = false)
+    @ManyToOne()
+    @JoinColumn(name = "ticket_id")
     private TicketEntity ticketId;
 
     @Column(name = "content", nullable = false)
